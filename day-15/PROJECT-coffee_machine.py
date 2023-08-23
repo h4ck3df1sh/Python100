@@ -44,6 +44,7 @@ resources = {
     "water": 300,
     "milk": 200,
     "coffee": 100,
+    "money": 0,
 }
 
 # Function to handle the CTRL+C signal
@@ -81,7 +82,8 @@ def print_recipes():
     input("\nPress any key to continue...")
 
 def print_report():
-    print("\nShowing current Coffee Machine resources: \n\n - Water 💧: %d \n\n - Milk 🥛: %d \n\n - Coffee ☕: %d" % (resources["water"],resources["milk"],resources["coffee"]))
+    print("\nShowing current Coffee Machine resources: \n\n - Water 💧: %d \n\n - Milk 🥛: %d \n\n - Coffee ☕: %d \n\n - Money 💶: $%0.2f" % (resources["water"], resources["milk"], resources["coffee"], resources["money"]))
+
     input("\nPress any key to continue...")
 
 def shutdown():
@@ -139,6 +141,7 @@ def main():
     print("And here is your %s ☕!" %(user_choice))
     for ingredient in MENU[user_choice]["ingredients"]:
         resources[ingredient]-=MENU[user_choice]["ingredients"][ingredient]
+    resources["money"] += MENU[user_choice]["cost"]
     sleep(3)
 
 while True:
